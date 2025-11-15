@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PhysioLearn — Physiotherapy Education</title>
+  <meta name="description" content="PhysioLearn — bite-sized physiotherapy lessons, resources, and patient education." />
+
+  <!-- FONTS & ICONS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Simple, contained styling so this single file is usable immediately. */
+    :root{
+      --bg:#0f1724; /* dark blue-gray */
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071024 0%, #071228 100%);color:#e6eef6}
+    a{color:var(--accent);text-decoration:none}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1200px;margin:0 auto}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo-mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:800}
+    nav{display:flex;gap:18px;align-items:center}
+    .btn{background:var(--accent);color:#052021;padding:10px 14px;border-radius:10px;font-weight:700}
+
+    /* HERO */
+    .hero{max-width:1200px;margin:24px auto;padding:36px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);display:grid;grid-template-columns:1fr 360px;gap:28px}
+    .hero h1{font-size:28px;margin:0 0 8px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .search{display:flex;gap:8px}
+    .search input{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+
+    /* GRID */
+    .grid{max-width:1200px;margin:20px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 28px}
+    .card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .card h3{margin:0 0 8px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* COURSE LIST */
+    .courses{grid-column:span 2}
+    .course{display:flex;gap:14px;align-items:flex-start;padding:12px;border-radius:12px;background:var(--glass);cursor:pointer}
+    .course:hover{transform:translateY(-4px);transition:200ms}
+    .thumb{width:84px;height:64px;border-radius:8px;background:linear-gradient(90deg,#0ea5a2,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700}
+
+    /* SIDEBAR */
+    .sidebar{display:flex;flex-direction:column;gap:12px}
+    .small{font-size:13px}
+
+    /* BLOG */
+    .blog-list{display:flex;flex-direction:column;gap:10px}
+
+    /* CONTACT */
+    form{display:grid;gap:10px}
+    input,textarea{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    textarea{min-height:100px;resize:vertical}
+
+    footer{max-width:1200px;margin:28px auto;color:var(--muted);padding:18px;border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr;gap:14px}
+      .courses{grid-column:span 1}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-mark">PL</div>
+      <div>
+        <div style="font-weight:700">PhysioLearn</div>
+        <div class="muted" style="font-size:12px">Patient education • Student resources • Short courses</div>
+      </div>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="#create">Contribute</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">Learn physiotherapy — clear, evidence-informed lessons for clinicians and patients</h1>
+        <p>Short modules, patient guides, exercise handouts and video-friendly lessons you can share with patients or use for CPD.</p>
+
+        <div class="search" role="search" aria-label="Search courses">
+          <input id="searchInput" type="search" placeholder="Search topics, e.g. 'knee osteoarthritis'" />
+          <button class="btn" id="searchBtn">Search</button>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <div class="card small" style="padding:10px;display:flex;flex-direction:column">
+            <span style="font-weight:700">120+</span>
+            <span class="muted">Lessons</span>
+          </div>
+          <div class="card small" style="padding:10px;display:flex;flex-direction:column">
+            <span style="font-weight:700">35</span>
+            <span class="muted">Patient leaflets</span>
+          </div>
+          <div class="card small" style="padding:10px;display:flex;flex-direction:column">
+            <span style="font-weight:700">Community</span>
+            <span class="muted">Join to contribute</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sidebar" aria-label="Quick links">
+        <div class="card">
+          <h3>Featured Course</h3>
+          <p class="muted">"Knee OA — conservative management" • 45m • Beginner</p>
+          <button class="btn" id="openFeatured">Open course</button>
+        </div>
+
+        <div class="card">
+          <h3>Recent posts</h3>
+          <div class="blog-list small" id="recentPosts">
+            <!-- JS will populate -->
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid" style="align-items:start">
+      <div class="card courses" id="courses" aria-labelledby="courses-heading">
+        <h2 id="courses-heading">Courses & Learning Modules</h2>
+        <p class="muted">Filter, search and save modules to your dashboard (client-only demo).</p>
+
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <select id="levelFilter">
+            <option value="all">All levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+          <button id="clearFilter" class="small">Clear</button>
+        </div>
+
+        <div id="courseList" style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+          <!-- JS will render list -->
+        </div>
+      </div>
+
+      <div class="card" style="min-height:240px">
+        <h3>Resources</h3>
+        <p class="muted">Upload patient leaflets, links to guidelines and short exercise videos.</p>
+        <ul class="muted small" id="resourceList">
+          <!-- JS populate -->
+        </ul>
+
+        <hr style="margin:10px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+        <h3>Saved modules</h3>
+        <div id="savedModules" class="muted small">(Nothing saved yet)</div>
+      </div>
+
+      <div class="card" id="blog">
+        <h3>Latest blog posts</h3>
+        <div id="blogCards" style="margin-top:10px">
+          <!-- JS populate -->
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" style="margin-top:18px;padding:0 28px">
+      <div class="card" style="grid-column:span 3" id="contact">
+        <h2>Contact / Contribute</h2>
+        <p class="muted">Want to add a module or patient leaflet? Send a short message below.</p>
+        <form id="contactForm">
+          <input type="text" id="name" placeholder="Your name" required />
+          <input type="email" id="email" placeholder="Email address" required />
+          <textarea id="message" placeholder="How you'd like to contribute" required></textarea>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" type="submit">Send</button>
+            <div class="muted small">(Demo: emails are not sent; saved to localStorage)</div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 28px">
+      <div>© PhysioLearn — built with ❤️ • Ready for your content</div>
+      <div class="muted small">Made for physiotherapists & patients</div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- Sample data (replace with your CMS/API later) ----------
+    const COURSES = [
+      {id:1,title:'Knee OA — conservative management',level:'beginner',duration:'45m',summary:'Assessment, exercise and education.'},
+      {id:2,title:'Post-op ACL rehab',level:'intermediate',duration:'60m',summary:'Timeline-based rehab and progression.'},
+      {id:3,title:'Low back pain — biopsychosocial approach',level:'beginner',duration:'30m',summary:'Communication, activity pacing, hands-on options.'},
+      {id:4,title:'Shoulder impingement: exercise vs injection',level:'advanced',duration:'50m',summary:'Evidence review and exercise prescription.'},
+    ];
+
+    const POSTS = [
+      {id:1,title:'How to write a patient exercise sheet',date:'2025-05-10'},
+      {id:2,title:'Telehealth tips for physios',date:'2025-02-14'},
+    ];
+
+    const RESOURCES = [
+      'NICE guideline: Osteoarthritis — summary (link)',
+      'Sample exercise handout (download PDF)',
+      'Patient-friendly video: knee strengthening'
+    ];
+
+    // ---------- Helpers ----------
+    const $ = (sel)=> document.querySelector(sel);
+    const $$ = (sel)=> document.querySelectorAll(sel);
+
+    // ---------- Render recent posts ----------
+    const recent = $('#recentPosts');
+    POSTS.slice(0,3).forEach(p => {
+      const d = document.createElement('div');
+      d.textContent = `${p.title} — ${p.date}`;
+      recent.appendChild(d);
+    });
+
+    // ---------- Render resources ----------
+    const resList = $('#resourceList');
+    RESOURCES.forEach(r => { const li = document.createElement('li'); li.textContent = r; resList.appendChild(li); });
+
+    // ---------- Render courses ----------
+    const courseList = $('#courseList');
+    function renderCourses(filter = {}){
+      courseList.innerHTML='';
+      const q = (filter.q||'').toLowerCase();
+      const level = filter.level || 'all';
+      COURSES.filter(c => (level==='all' || c.level===level) && (c.title.toLowerCase().includes(q) || c.summary.toLowerCase().includes(q)))
+        .forEach(c => {
+          const el = document.createElement('div'); el.className='course'; el.tabIndex=0;
+          el.innerHTML = `<div class='thumb'>${c.title.split(' ').slice(0,2).map(s=>s[0]).join('')}</div>
+            <div style='flex:1'>
+              <div style='display:flex;justify-content:space-between;align-items:start'><strong>${c.title}</strong><div class='muted small'>${c.duration}</div></div>
+              <div class='muted small'>${c.summary}</div>
+              <div style='margin-top:8px;display:flex;gap:8px'><button class='small' data-action='save' data-id='${c.id}'>Save</button><button class='small' data-action='open' data-id='${c.id}'>Open</button></div>
+            </div>`;
+          courseList.appendChild(el);
+        });
+    }
+    renderCourses();
+
+    // ---------- Course interactions ----------
+    courseList.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button'); if(!btn) return;
+      const action = btn.dataset.action; const id = Number(btn.dataset.id);
+      const course = COURSES.find(c=>c.id===id);
+      if(action==='open') alert(`Open course: ${course.title} — (demo)`);
+      if(action==='save'){
+        const saved = JSON.parse(localStorage.getItem('pl_saved')||'[]');
+        if(!saved.includes(id)){ saved.push(id); localStorage.setItem('pl_saved',JSON.stringify(saved)); updateSaved(); alert('Saved to your modules'); } else alert('Already saved');
+      }
+    });
+
+    function updateSaved(){
+      const el = $('#savedModules');
+      const saved = JSON.parse(localStorage.getItem('pl_saved')||'[]');
+      if(!saved.length) { el.textContent='(Nothing saved yet)'; return }
+      el.innerHTML = saved.map(id=>{
+        const c = COURSES.find(x=>x.id===id); return `<div style='margin-bottom:6px'>• ${c.title} <button data-id='${id}' class='small' data-action='remove'>Remove</button></div>`
+      }).join('');
+    }
+    updateSaved();
+
+    // remove from saved
+    document.body.addEventListener('click', e=>{
+      const btn = e.target.closest('button'); if(!btn) return; if(btn.dataset.action!=='remove') return;
+      const id = Number(btn.dataset.id); let saved = JSON.parse(localStorage.getItem('pl_saved')||'[]'); saved = saved.filter(x=>x!==id); localStorage.setItem('pl_saved',JSON.stringify(saved)); updateSaved();
+    });
+
+    // ---------- Filters & search ----------
+    $('#levelFilter').addEventListener('change', (e)=> renderCourses({level:e.target.value, q:$('#searchInput').value}));
+    $('#clearFilter').addEventListener('click', ()=>{ $('#levelFilter').value='all'; renderCourses({level:'all', q:$('#searchInput').value}); });
+    $('#searchBtn').addEventListener('click', ()=> renderCourses({q:$('#searchInput').value, level:$('#levelFilter').value}));
+    $('#searchInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') renderCourses({q:$('#searchInput').value, level:$('#levelFilter').value}); });
+
+    // ---------- Contact form (demo) ----------
+    $('#contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const payload = {name:$('#name').value,email:$('#email').value,message:$('#message').value,date:new Date().toISOString()};
+      const sent = JSON.parse(localStorage.getItem('pl_messages')||'[]'); sent.push(payload); localStorage.setItem('pl_messages',JSON.stringify(sent));
+      alert('Thanks — message saved to local demo store.');
+      e.target.reset();
+    });
+
+    // ---------- Featured button demo ----------
+    $('#openFeatured').addEventListener('click', ()=> alert('Opening featured course — demo.'));
+
+    // ---------- Blog cards ----------
+    const blogCards = $('#blogCards');
+    POSTS.forEach(p => {
+      const d = document.createElement('div'); d.className='card'; d.style.marginBottom='8px'; d.innerHTML=`<strong>${p.title}</strong><div class='muted small'>${p.date}</div>`; blogCards.appendChild(d);
+    });
+
+    // ---------- Small accessibility improvements ----------
+    document.querySelectorAll('button, [tabindex]').forEach(el=>{ if(!el.hasAttribute('tabindex')) el.tabIndex=0 });
+
+    // End of demo script — replace with real API calls or framework as you expand.
+  </script>
+</body>
+</html>
